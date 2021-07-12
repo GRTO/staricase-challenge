@@ -24,6 +24,7 @@ const themeLight = {
     button2: "#8edecd",
     background2: "#A7A8B1",
     black: "#101017",
+    error: "#C35A90",
   },
   // Breakpoints for responsive design
   breakpoints,
