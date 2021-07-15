@@ -1,6 +1,5 @@
 import { FC } from "react";
 import { Loader } from "../../../components";
-import { useStopwatch } from "../../../hooks/Timer/useStopwatch";
 import { useVerification } from "../../../hooks/Verification/useVerification";
 import { Button, Paragraph, Title } from "../../../styles/GlobalComponents";
 import {
@@ -10,10 +9,7 @@ import {
 } from "./TransactionFormStyles";
 
 export const TransactionForm: FC = () => {
-  const { createRandomTransaction, transaction, nextStep, prevStep } =
-    useVerification();
-  // TODO: replace when backend transaction endpoint is available
-  useStopwatch(createRandomTransaction, 5000);
+  const { nextStep, prevStep, employment, income } = useVerification();
 
   return (
     <>
@@ -32,15 +28,26 @@ export const TransactionForm: FC = () => {
         all the outputs to the same transaction.
       </Paragraph>
       <TransactionContainer>
-        {transaction ? (
-          <Transaction>
-            <TitleTransaction>Transaction finished</TitleTransaction>
-            <div>
-              Your current <i>transaction_id</i> is{" "}
-              <strong>{transaction.transactionId}</strong> and it was created at{" "}
-              <strong>{transaction.createdAt}</strong>
-            </div>
-          </Transaction>
+        {employment && income ? (
+          <>
+            <Transaction>
+              <TitleTransaction>Employment Transaction</TitleTransaction>
+              <div>
+                Your current <i>transaction_id</i> is{" "}
+                <strong>{employment.transaction?.transactionId}</strong> and it
+                was created at{" "}
+                <strong>{employment.transaction?.createdAt}</strong>
+              </div>
+            </Transaction>
+            <Transaction>
+              <TitleTransaction>Income Transaction</TitleTransaction>
+              <div>
+                Your current <i>transaction_id</i> is{" "}
+                <strong>{income.transaction?.transactionId}</strong> and it was
+                created at <strong>{income.transaction?.createdAt}</strong>
+              </div>
+            </Transaction>
+          </>
         ) : (
           <>
             <Loader />
@@ -52,7 +59,7 @@ export const TransactionForm: FC = () => {
       </Button>
       <Button
         type="button"
-        disabled={!transaction}
+        disabled={!employment || !income}
         onClick={() => nextStep({})}
       >
         Next

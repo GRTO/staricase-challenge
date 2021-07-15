@@ -25,6 +25,8 @@ const themeLight = {
     background2: "#A7A8B1",
     black: "#101017",
     error: "#C35A90",
+    error1: "#c35a909e",
+    white: "#FFF"
   },
   // Breakpoints for responsive design
   breakpoints,
