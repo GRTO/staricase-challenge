@@ -6,6 +6,7 @@ import {
   VerificationType,
 } from "../../store/verification/types";
 import { VerificationContext } from "../../store/verification/VerificationContext";
+import { SCHEMA } from "./contants";
 
 export const useVerification = () => {
   const context = useContext(VerificationContext);
@@ -19,15 +20,15 @@ export const useVerification = () => {
   const { state, dispatch } = context;
 
   // TODO: Replace when backend collection endpoint is available
-  const createRandomCollection = (): CollectionDTO => {
+  const createRandomCollection = (transactionId: string | undefined): CollectionDTO => {
     const collectionId = generateUUID();
     const createdAt = new Date().toISOString();
 
     return {
-      data: state.schema || {},
+      data: SCHEMA || {},
       collectionId,
       metadata: { createdAt, validation: false },
-      transactionId: state.transaction?.transactionId || "",
+      transactionId: transactionId || "",
     };
   };
 
@@ -56,7 +57,6 @@ export const useVerification = () => {
   return {
     apiKey: state.apiKey,
     currentStep: state.currentStep,
-    transaction: state.transaction,
     schema: state.schema,
     income: state.income,
     employment: state.employment,
