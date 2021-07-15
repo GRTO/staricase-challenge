@@ -4,7 +4,7 @@ import { ErrorContainer, Input, Label } from "./InputStyles";
 import { InputProps } from "./types";
 
 const InputElement: FC<InputProps> = memo(
-  ({ value, label, name, onChange = () => {}, hasError, ...props }) => (
+  ({ value, label, name, onChange = () => {}, hasError, testId, ...props }) => (
     <>
       {label && <Label htmlFor={name}>{label}</Label>}
       <Input
@@ -12,6 +12,7 @@ const InputElement: FC<InputProps> = memo(
         name={name}
         hasError={hasError}
         onChange={onChange}
+        data-testid={testId}
         {...props}
       />
       <ErrorContainer>
