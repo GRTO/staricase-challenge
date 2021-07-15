@@ -21,3 +21,7 @@ export const Label = styled.label`
   color: ${(props) => props.theme.colors.primary};
   font-weight: bold;
 `;
+
+export const ErrorContainer = styled.div`
+  margin-top: 0.5rem;
+`;
