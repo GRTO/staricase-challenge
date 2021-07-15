@@ -29,9 +29,19 @@ export const CollectionForm: FC = () => {
       const { schema } = formData;
 
       if (schema && schemaError) {
-        //  TODO: remove this creation, it has be called from backend service
-        const collection = createRandomCollection();
-        nextStep({ schema, collection });
+        // TODO: Replace it when income and employement collection POST dont throw errors
+        const incomeCollection = createRandomCollection();
+        const employmentCollection = createRandomCollection();
+
+        nextStep({
+          income: { collection: incomeCollection },
+          employment: { collection: employmentCollection },
+        });
+        nextStep({
+          schema,
+          income: { collection: incomeCollection },
+          employment: { collection: employmentCollection },
+        });
       }
     },
     initialValues: {

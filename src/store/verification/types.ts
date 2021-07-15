@@ -1,9 +1,23 @@
 import { VerificationActionType } from "./actions";
 
+export type IncomeDTO = {
+  transaction?: TransactionDTO;
+  schema?: Object;
+  collection?: CollectionDTO;
+};
+
+export type EmploymentDTO = {
+  transaction?: TransactionDTO;
+  schema?: Object;
+  collection?: CollectionDTO;
+};
+
 export type VerificationStore = {
   apiKey: string;
   currentStep: number;
   steps: number;
+  income?: IncomeDTO;
+  employment?: EmploymentDTO;
   transaction?: TransactionDTO;
   schema?: Object;
   collection?: CollectionDTO;

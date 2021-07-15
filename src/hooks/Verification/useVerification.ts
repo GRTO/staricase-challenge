@@ -18,19 +18,6 @@ export const useVerification = () => {
 
   const { state, dispatch } = context;
 
-  // TODO: Replace when backend transaction endpoint is available
-  const createRandomTransaction = () => {
-    const transactionId = generateUUID();
-    const createdAt = new Date().toISOString();
-
-    if (!state.transaction) {
-      dispatch({
-        type: VerificationActionType.SET_TRANSACTION,
-        state: { ...state, transaction: { transactionId, createdAt } },
-      });
-    }
-  };
-
   // TODO: Replace when backend collection endpoint is available
   const createRandomCollection = (): CollectionDTO => {
     const collectionId = generateUUID();
@@ -52,9 +39,17 @@ export const useVerification = () => {
   };
 
   const nextStep = (payload: VerificationType) => {
+    const income = { ...state.income, ...payload.income };
+    const employment = { ...state.employment, ...payload.employment };
     dispatch({
       type: VerificationActionType.UPDATE_CURRENT_STEP,
-      state: { ...state, ...payload, currentStep: state.currentStep + 1 },
+      state: {
+        ...state,
+        ...payload,
+        income,
+        employment,
+        currentStep: state.currentStep + 1,
+      },
     });
   };
 
@@ -63,9 +58,10 @@ export const useVerification = () => {
     currentStep: state.currentStep,
     transaction: state.transaction,
     schema: state.schema,
+    income: state.income,
+    employment: state.employment,
     prevStep,
     nextStep,
-    createRandomTransaction,
     createRandomCollection,
   };
 };

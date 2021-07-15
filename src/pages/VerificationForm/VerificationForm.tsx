@@ -3,6 +3,7 @@ import { useVerification } from "../../hooks/Verification/useVerification";
 import { ApiKeyForm } from "./ApiKeyForm/ApiKeyForm";
 import { CollectionForm } from "./CollectionForm/CollectionForm";
 import { TransactionForm } from "./TransactionForm/TransactionForm";
+import { VerificationView } from "./VerficationView/VerificationView";
 import { VerificationOptionForm } from "./VerificationOptionForm/VerificationOptionForm";
 
 export const VerificationForm: FC = () => {
@@ -13,6 +14,7 @@ export const VerificationForm: FC = () => {
       {currentStep === 1 && <TransactionForm />}
       {currentStep === 2 && <CollectionForm />}
       {currentStep === 3 && <VerificationOptionForm />}
+      {currentStep === 4 && <VerificationView />}
     </>
   );
 };
