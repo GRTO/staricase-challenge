@@ -1,6 +1,6 @@
 import { FC, memo } from "react";
 import { ErrorMessage } from "../ErrorMessage/ErrorMessage";
-import { Input, Label } from "./InputStyles";
+import { ErrorContainer, Input, Label } from "./InputStyles";
 import { InputProps } from "./types";
 
 const InputElement: FC<InputProps> = memo(
@@ -14,7 +14,9 @@ const InputElement: FC<InputProps> = memo(
         onChange={onChange}
         {...props}
       />
-      {hasError && <ErrorMessage errorLabel={hasError} />}
+      <ErrorContainer>
+        {hasError && <ErrorMessage errorLabel={hasError} />}
+      </ErrorContainer>
     </>
   )
 );

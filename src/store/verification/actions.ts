@@ -1,0 +1,5 @@
+export enum VerificationActionType {
+  SET_STEPS = "SET_STEPS",
+  UPDATE_CURRENT_STEP = "UPDATE_CURRENT_STEP",
+  SET_TRANSACTION = "SET_TRANSACTION",
+}
