@@ -3,5 +3,6 @@ export interface InputProps {
   name: string;
   label?: string;
   hasError?: string;
+  testId?: string;
   onChange?: (e: React.FormEvent<HTMLInputElement>) => void;
 }

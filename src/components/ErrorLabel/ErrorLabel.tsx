@@ -1,10 +1,6 @@
 import { FC } from "react";
-import { ErrorDTO } from "../../hooks/Service/types/errors";
 import { ErrorLabelContainer, ErrorLabelItem } from "./ErrorLabelStyles";
-
-interface ErrorLabelProps {
-  errors: Array<ErrorDTO>;
-}
+import { ErrorLabelProps } from "./types";
 
 const ErrorLabel: FC<ErrorLabelProps> = ({ errors }) => (
   <ErrorLabelContainer>
