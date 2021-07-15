@@ -1,11 +1,13 @@
 import { FC } from "react";
 import { Form, Input } from "../../../components";
 import { useForm } from "../../../hooks/Form/useForm";
+import { useService } from "../../../hooks/Service/useService";
 import { useVerification } from "../../../hooks/Verification/useVerification";
 import { Paragraph, Button, Title } from "../../../styles/GlobalComponents";
 import { ApiKeyFormType } from "./types";
 
 export const ApiKeyForm: FC = () => {
+  const { createTransaction } = useService();
   const { nextStep, apiKey: verificationApiKey } = useVerification();
 
   const {
@@ -19,10 +21,12 @@ export const ApiKeyForm: FC = () => {
         required: { value: true, message: "API key is required" },
       },
     },
-    onSubmit: (formData) => {
+    onSubmit: async (formData) => {
       const { apiKey } = formData;
 
       if (apiKey) {
+        const data = await createTransaction("employment", apiKey);
+
         nextStep({ apiKey });
       }
     },
