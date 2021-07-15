@@ -10,6 +10,8 @@ export const CollectionForm: FC = () => {
   const {
     nextStep,
     prevStep,
+    income,
+    employment,
     schema: verificationSchema,
     createRandomCollection,
   } = useVerification();
@@ -28,15 +30,11 @@ export const CollectionForm: FC = () => {
     onSubmit: (formData) => {
       const { schema } = formData;
 
-      if (schema && schemaError) {
+      if (schema && !schemaError) {
         // TODO: Replace it when income and employement collection POST dont throw errors
-        const incomeCollection = createRandomCollection();
-        const employmentCollection = createRandomCollection();
+        const incomeCollection = createRandomCollection(income?.transaction?.transactionId);
+        const employmentCollection = createRandomCollection(employment?.transaction?.transactionId);
 
-        nextStep({
-          income: { collection: incomeCollection },
-          employment: { collection: employmentCollection },
-        });
         nextStep({
           schema,
           income: { collection: incomeCollection },
@@ -79,9 +77,8 @@ export const CollectionForm: FC = () => {
           Back
         </Button>
         <Button
-          type="button"
+          type="submit"
           disabled={schemaError}
-          onClick={() => nextStep({ schema })}
         >
           Next
         </Button>
