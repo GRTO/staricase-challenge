@@ -18,9 +18,7 @@ export type VerificationStore = {
   steps: number;
   income?: IncomeDTO;
   employment?: EmploymentDTO;
-  transaction?: TransactionDTO;
   schema?: Object;
-  collection?: CollectionDTO;
   manualVerification?: boolean;
   exludedBorrower?: boolean;
   partnerName?: string;
